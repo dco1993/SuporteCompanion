@@ -2,7 +2,7 @@ package dco.uva.suportecompanion.model;
 
 import java.time.LocalDateTime;
 
-public class Chamado {
+public class ChamadoModel {
 
     private long id;
     private String solicitante;
@@ -11,8 +11,8 @@ public class Chamado {
     private String observacoes;
     private boolean resolvido;
 
-    public Chamado(long _id, String _solicitante, LocalDateTime _inicio,
-                   int _duracao, String _observacoes, boolean _resolvidos){
+    public ChamadoModel(long _id, String _solicitante, LocalDateTime _inicio,
+                        int _duracao, String _observacoes, boolean _resolvidos){
         this.id = _id;
         this.solicitante = _solicitante;
         this.inicio = _inicio;
