@@ -21,6 +21,10 @@ public class ChamadoModel {
         this.resolvido = _resolvidos;
     }
 
+    public ChamadoModel(){
+
+    }
+
     public void setId(long _id){
         this.id = _id;
     }

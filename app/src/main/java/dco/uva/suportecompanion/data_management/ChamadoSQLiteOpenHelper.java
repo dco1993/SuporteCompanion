@@ -1,4 +1,4 @@
-package dco.uva.suportecompanion.data_manager;
+package dco.uva.suportecompanion.data_management;
 
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase;
