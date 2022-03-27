@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SuporteCompanion">
         <activity
+            android:name=".ChamadoDetails"
+            android:exported="false" />
+        <activity
             android:name=".ChamadoManager"
             android:exported="false" />
         <activity

@@ -20,7 +20,7 @@ import dco.uva.suportecompanion.model.ChamadoModel;
 public class Chamado_DAO {
 
     private SQLiteDatabase db;
-    DateTimeFormatter dtFormato = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     //colunas da tabela chamados
     private String[] colunas = {
@@ -46,16 +46,15 @@ public class Chamado_DAO {
         sqliteOpenHelper.close();
     }
 
-    public void inserir (String solicitante, LocalDateTime inicio, int duracao,
-                         String observacoes, boolean resolvido){
+    public void inserir (ChamadoModel chamado){
 
         ContentValues values = new ContentValues();
 
-        values.put(ChamadoSQLiteOpenHelper.COLUNA_SOLICITANTE, solicitante);
-        values.put(ChamadoSQLiteOpenHelper.COLUNA_INICIO, inicio.toString());
-        values.put(ChamadoSQLiteOpenHelper.COLUNA_DURACAO, duracao);
-        values.put(ChamadoSQLiteOpenHelper.COLUNA_OBSERVACOES, observacoes);
-        values.put(ChamadoSQLiteOpenHelper.COLUNA_RESOLVIDO, resolvido);
+        values.put(ChamadoSQLiteOpenHelper.COLUNA_SOLICITANTE, chamado.getSolicitante());
+        values.put(ChamadoSQLiteOpenHelper.COLUNA_INICIO, chamado.getInicio().format(formatter));
+        values.put(ChamadoSQLiteOpenHelper.COLUNA_DURACAO, chamado.getDuracao());
+        values.put(ChamadoSQLiteOpenHelper.COLUNA_OBSERVACOES, chamado.getObservacoes());
+        values.put(ChamadoSQLiteOpenHelper.COLUNA_RESOLVIDO, chamado.getResolvido());
 
         long insertId = db.insert(ChamadoSQLiteOpenHelper.TABELA, null, values);
 
@@ -73,7 +72,7 @@ public class Chamado_DAO {
 
         chamado.setId(cursor.getLong(0));
         chamado.setSolicitante(cursor.getString(1));
-        chamado.setInicio(LocalDateTime.parse(cursor.getString(2), dtFormato));
+        chamado.setInicio(LocalDateTime.parse(cursor.getString(2), formatter));
         chamado.setDuracao((cursor.getInt(3)));
         chamado.setObservacoes(cursor.getString(4));
 
@@ -99,8 +98,10 @@ public class Chamado_DAO {
 
             ChamadoModel chamado = new ChamadoModel();
 
+            chamado.setId(cursor.getLong(0));
             chamado.setSolicitante(cursor.getString(1));
-            chamado.setInicio(LocalDateTime.parse(cursor.getString(2), dtFormato));
+            chamado.setInicio(LocalDateTime.parse(cursor.getString(2), formatter));
+            chamado.setDuracao(cursor.getInt(3));
 
             if(cursor.getInt(5) == 1){
                 chamado.setResolvido(true);
@@ -117,6 +118,29 @@ public class Chamado_DAO {
         cursor.close();
 
         return chamados;
+    }
+
+    public void update (ChamadoModel chamado){
+
+        String id = Long.toString(chamado.getId());
+
+        ContentValues values = new ContentValues();
+
+        values.put(ChamadoSQLiteOpenHelper.COLUNA_SOLICITANTE, chamado.getSolicitante());
+        values.put(ChamadoSQLiteOpenHelper.COLUNA_INICIO, chamado.getInicio().format(formatter));
+        values.put(ChamadoSQLiteOpenHelper.COLUNA_DURACAO, chamado.getDuracao());
+        values.put(ChamadoSQLiteOpenHelper.COLUNA_OBSERVACOES, chamado.getObservacoes());
+        values.put(ChamadoSQLiteOpenHelper.COLUNA_RESOLVIDO, chamado.getResolvido());
+
+        db.update(ChamadoSQLiteOpenHelper.TABELA, values,
+            ChamadoSQLiteOpenHelper.COLUNA_ID + "=" + id, null);
+
+    }
+
+    public void delete (long idChamado){
+        String id = Long.toString(idChamado);
+        long deleted = db.delete(ChamadoSQLiteOpenHelper.TABELA, ChamadoSQLiteOpenHelper.COLUNA_ID + "="
+                                + id, null);
     }
 
 }

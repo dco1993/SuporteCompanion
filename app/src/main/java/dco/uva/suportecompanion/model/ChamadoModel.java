@@ -1,6 +1,7 @@
 package dco.uva.suportecompanion.model;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class ChamadoModel {
 
@@ -10,6 +11,7 @@ public class ChamadoModel {
     private int duracao;
     private String observacoes;
     private boolean resolvido;
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     public ChamadoModel(long _id, String _solicitante, LocalDateTime _inicio,
                         int _duracao, String _observacoes, boolean _resolvidos){
@@ -75,10 +77,10 @@ public class ChamadoModel {
 
     public String toString(){
         String obj;
-        obj = "ID: " + String.format("%3l", id);
+        obj = "ID: " + Long.toString(id);
         obj += "\nSolicitante: " + solicitante;
-        obj += "\nInicio: " + inicio.toString();
-        obj += "\nDuração: " + String.format("%3", duracao);
+        obj += "\nInicio: " + inicio.format(formatter);
+        obj += "\nDuração: " + Integer.toString(duracao);
         obj += "\nObservações: " + observacoes;
         obj += "\nResolvido: " + resolvido;
         return obj;

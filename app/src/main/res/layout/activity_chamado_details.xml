@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ChamadoDetails">
+
+
+    <TextView
+        android:id="@+id/txvDetailsSolicitante"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:text="Chamado de:"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txvDetailsData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Em:"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/txvDetailsSolicitante"
+        app:layout_constraintTop_toBottomOf="@+id/txvDetailsSolicitante" />
+
+    <TextView
+        android:id="@+id/txvDetailsTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="As:"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/txvDetailsSolicitante"
+        app:layout_constraintTop_toBottomOf="@+id/txvDetailsData" />
+
+    <TextView
+        android:id="@+id/txvDetailsAtuacao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Tempo de atuação:"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/txvDetailsSolicitante"
+        app:layout_constraintTop_toBottomOf="@+id/txvDetailsTime" />
+
+    <TextView
+        android:id="@+id/txvDetailsDuracao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Minutos:"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/txvDetailsAtuacao"
+        app:layout_constraintTop_toBottomOf="@+id/txvDetailsAtuacao" />
+
+    <TextView
+        android:id="@+id/txvDetailsMais"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Observações:"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/txvDetailsSolicitante"
+        app:layout_constraintTop_toBottomOf="@+id/txvDetailsDuracao" />
+
+    <TextView
+        android:id="@+id/txvDetailsObservacoes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Nenhuma obsevações adicionada!"
+        app:layout_constraintStart_toStartOf="@+id/txvDetailsMais"
+        app:layout_constraintTop_toBottomOf="@+id/txvDetailsMais" />
+
+    <ImageView
+        android:id="@+id/imgDetailsBadge"
+        android:layout_width="172dp"
+        android:layout_height="172dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/txvDetailsMais"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txvDetailsSolicitante"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/ic_baseline_check_circle_outline_80"
+        app:tint="@color/transparent_green" />
+
+    <TextView
+        android:id="@+id/txvDetailsStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Status do chamado:"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/txvDetailsSolicitante"
+        app:layout_constraintTop_toBottomOf="@+id/txvDetailsObservacoes" />
+
+    <TextView
+        android:id="@+id/txvDetailsResolvido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Chamado Resolvido!"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/txvDetailsStatus"
+        app:layout_constraintTop_toBottomOf="@+id/txvDetailsStatus" />
+
+    <Button
+        android:id="@+id/btnDetailsEditar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Editar Chamado"
+        app:layout_constraintStart_toStartOf="@+id/txvDetailsSolicitante"
+        app:layout_constraintTop_toBottomOf="@+id/txvDetailsResolvido" />
+
+    <Button
+        android:id="@+id/btnDetailsExcluir"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="24dp"
+        android:text="Excluir Chamado"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnDetailsEditar"
+        app:layout_constraintTop_toBottomOf="@+id/txvDetailsResolvido" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
